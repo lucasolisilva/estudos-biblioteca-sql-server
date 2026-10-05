@@ -89,3 +89,49 @@ SELECT TOP(5) WITH TIES
 	nome_livro, preco_livro
 FROM livro
 ORDER BY preco_livro;
+
+
+-- Filtrando registros com WHERE
+
+SELECT *
+FROM livro
+WHERE id_editora = 3;
+
+SELECT id_autor, nome_autor
+FROM autor
+WHERE sobrenome_autor = 'Verne';
+
+SELECT nome_livro, preco_livro
+FROM livro
+WHERE preco_livro > 100
+ORDER BY preco_livro DESC;
+
+SELECT *
+FROM livro
+WHERE id_editora IN (3,4,7);
+
+SELECT *
+FROM livro
+WHERE preco_livro BETWEEN 40 AND 90;
+
+SELECT *
+FROM livro
+WHERE nome_livro LIKE 'O%';
+
+SELECT *
+FROM autor
+WHERE nome_autor IS NOT NULL;
+
+-- % significa qualquer conjunto de caracteres
+
+-- Concatenação de consultas com WHERE
+
+SELECT nome_livro, data_pub
+FROM livro
+WHERE id_editora = (
+	SELECT id_editora
+	FROM editora
+	WHERE nome_editora = 'Aleph'
+)
+ORDER BY nome_livro;
+
