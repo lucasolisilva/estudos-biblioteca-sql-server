@@ -71,3 +71,21 @@ ORDER BY id_editora, preco_livro;
 SELECT nome_livro, preco_livro, id_editora
 FROM livro
 ORDER BY id_editora ASC, preco_livro DESC;
+
+
+-- Restrição de resultados com SELECT TOP
+
+SELECT TOP(5) nome_livro
+FROM livro
+ORDER BY nome_livro;
+
+SELECT TOP(25) PERCENT nome_livro, preco_livro
+FROM livro
+ORDER BY preco_livro DESC;
+
+-- TOP com WITH TIES para valores empatados
+
+SELECT TOP(5) WITH TIES
+	nome_livro, preco_livro
+FROM livro
+ORDER BY preco_livro;
