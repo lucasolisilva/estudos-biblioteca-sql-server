@@ -134,4 +134,3 @@ WHERE id_editora = (
 	WHERE nome_editora = 'Aleph'
 )
 ORDER BY nome_livro;
-
