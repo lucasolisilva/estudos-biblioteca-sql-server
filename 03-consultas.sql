@@ -134,3 +134,29 @@ WHERE id_editora = (
 	WHERE nome_editora = 'Aleph'
 )
 ORDER BY nome_livro;
+
+
+-- Filtros combinados com operaores lógicos
+
+SELECT * FROM livro
+WHERE id_livro > 102 AND id_editora < 4;
+
+SELECT * FROM livro
+WHERE id_livro > 110 OR id_editora < 4;
+
+SELECT * FROM livro
+WHERE id_livro > 112 OR NOT id_editora < 4;
+
+SELECT * FROM livro
+WHERE data_pub BETWEEN '20040613' AND '20140507';
+
+SELECT id_livro, nome_livro, preco_livro
+FROM livro
+WHERE preco_livro BETWEEN 50 AND 100;
+
+SELECT nome_livro, preco_livro, data_pub
+FROM livro
+WHERE preco_livro >= 25.00
+AND data_pub BETWEEN '20050610' AND '20160708'
+OR data_pub BETWEEN '19900101' AND '20040613'
+ORDER BY data_pub;
