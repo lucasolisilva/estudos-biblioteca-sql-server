@@ -160,3 +160,32 @@ WHERE preco_livro >= 25.00
 AND data_pub BETWEEN '20050610' AND '20160708'
 OR data_pub BETWEEN '19900101' AND '20040613'
 ORDER BY data_pub;
+
+
+-- Combinando consultas com UNION
+
+SELECT nome_autor AS Nome, 'autor' AS Tipo
+FROM autor
+UNION
+SELECT nome_editora AS Nome, 'editora' AS Tipo
+FROM editora;
+
+
+SELECT nome_livro AS Nome, 'Livro' AS Tipo
+FROM livro
+UNION
+SELECT nome_assunto AS Nome, 'Assunto' AS Tipo
+FROM assunto;
+
+SELECT nome_autor AS nome, 'Autor' AS Tipo
+FROM autor
+UNION
+SELECT nome_editora AS nome, 'Editora' AS Tipo
+FROM editora
+UNION
+SELECT nome_assunto AS Nome, 'Assunto' AS Tipo
+FROM assunto
+UNION
+SELECT nome_livro AS Nome, 'Livro' AS Tipo
+FROM livro
+ORDER BY Tipo;
