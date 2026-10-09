@@ -189,3 +189,54 @@ UNION
 SELECT nome_livro AS Nome, 'Livro' AS Tipo
 FROM livro
 ORDER BY Tipo;
+
+-- Explorando funções por agregação
+
+SELECT COUNT(*) AS total
+FROM autor;
+
+SELECT MAX(preco_livro) AS maior_preco
+FROM livro;
+
+SELECT MIN(numero_paginas) AS menor_numero
+FROM livro;
+
+SELECT MAX(numero_paginas) AS menor_numero
+FROM livro;
+
+SELECT (preco_livro) AS media_preco
+FROM livro;
+
+SELECT SUM(preco_livro) AS valor_total
+FROM livro
+WHERE id_editora = 3;
+
+SELECT AVG(preco_livro) AS 'Média dos preços'
+FROM livro;
+
+SELECT SUM(preco_livro) AS valor_total
+FROM livro;
+
+SELECT COUNT(*) AS total
+FROM livro
+WHERE id_assunto = 1;
+
+SELECT SUM(preco_livro) / COUNT(*) AS 'Preço médio'
+FROM livro;
+
+SELECT nome_livro, preco_livro
+FROM livro
+WHERE preco_livro = (
+	SELECT MAX(preco_livro)
+	FROM livro
+);
+
+SELECT id_editora, COUNT(*) AS 'Quantidade de livros por editora'
+FROM livro
+GROUP BY id_editora;
+
+SELECT 
+	id_editora, 
+	AVG(preco_livro) AS 'Preço médio'
+FROM livro
+GROUP BY id_editora;
