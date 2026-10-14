@@ -240,3 +240,49 @@ SELECT
 	AVG(preco_livro) AS 'Preço médio'
 FROM livro
 GROUP BY id_editora;
+
+
+-- Funções com LIKE
+
+SELECT * FROM livro
+WHERE nome_livro LIKE 'f%';
+
+SELECT * FROM autor
+WHERE nome_autor NOT LIKE 's%';
+
+SELECT * FROM livro
+WHERE nome_livro LIKE '[fd]%';
+
+SELECT * FROM livro
+WHERE nome_livro LIKE '[^f^d]%';
+
+SELECT * FROM livro 
+WHERE nome_livro LIKE '[aeiou]%';
+
+SELECT nome_livro
+FROM livro
+WHERE nome_livro LIKE '[0-9]%';
+
+SELECT nome_livro
+FROM livro
+WHERE nome_livro LIKE 'A%O';
+
+SELECT nome_autor, sobrenome_autor
+FROM autor
+WHERE 
+	nome_autor LIKE 'R%' 
+	AND sobrenome_autor LIKE 'B%';
+
+SELECT nome_editora
+FROM editora
+WHERE nome_editora LIKE '[O-T]%';
+
+SELECT * FROM livro 
+WHERE nome_livro LIKE '%[aeiou]_';
+
+SELECT nome_autor, sobrenome_autor
+FROM autor
+WHERE nome_autor LIKE 'J___';
+
+SELECT * FROM livro 
+WHERE nome_livro NOT LIKE '[aeiou0-9]%';
