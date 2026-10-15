@@ -21,4 +21,15 @@ TO DISK = 'C:\SQL\backup_biblioteca_log.trn'
 WITH CHECKSUM, STATS = 10;
 
 
--- Restauração de backups
+-- Restauração de backup
+
+RESTORE FILELISTONLY
+FROM DISK = 'C:\SQL\backup_biblioteca.bak';
+
+RESTORE DATABASE biblioteca_restored
+FROM DISK = 'C:\SQL\backup_biblioteca.bak'
+WITH
+	MOVE 'biblioteca' TO 'C:\SQL\biblioteca_restored.mdf',
+	MOVE 'biblioteca_log' TO 'C:\SQL\biblioteca_restored_log.ldf',
+	RECOVERY,
+	STATS = 10;
