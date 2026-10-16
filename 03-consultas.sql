@@ -47,8 +47,8 @@ SELECT * FROM livro_ficcao;
 
 DROP TABLE livro_ficcao;
 
-SELECT AVG(preco_livro)
-FROM livro;
+	SELECT AVG(preco_livro)
+	FROM livro;
 
 -- Utilizando ORDER BY para ordenação nas querys
 
@@ -286,3 +286,98 @@ WHERE nome_autor LIKE 'J___';
 
 SELECT * FROM livro 
 WHERE nome_livro NOT LIKE '[aeiou0-9]%';
+
+-- Consultas com INNER JOIN
+
+SELECT livro.nome_livro, assunto.nome_assunto
+FROM livro
+INNER JOIN assunto   
+	ON livro.id_assunto = assunto.id_assunto;
+
+SELECT 
+	l.nome_livro AS Livros,
+	e.nome_editora AS Editoras
+FROM livro AS l
+INNER JOIN editora AS e
+	ON l.id_editora = e.id_editora
+WHERE e.nome_editora LIKE '[mh]%'
+ORDER BY Livros;
+
+SELECT 
+	l.nome_livro AS Livros,
+	a.nome_autor AS 'Nome do autor',
+	a.sobrenome_autor AS Sobrenome,
+	e.nome_editora AS Editora
+FROM livro_autor AS la
+INNER JOIN livro AS l
+	ON l.id_livro = la.id_livro
+INNER JOIN autor AS a
+	ON a.id_autor = la.id_autor
+INNER JOIN editora AS e
+	ON e.id_editora = l.id_editora
+ORDER BY Livros;
+
+SELECT
+	l.nome_livro AS Livros,
+	a.nome_autor AS 'Nome do autor',
+	a.sobrenome_autor AS Sobrenome,
+	ass.nome_assunto AS Assunto
+FROM livro AS l
+INNER JOIN livro_autor AS la
+	ON l.id_livro = la.id_livro
+INNER JOIN autor AS a
+	ON a.id_autor = la.id_autor
+INNER JOIN assunto AS ass
+	ON ass.id_assunto = l.id_assunto
+ORDER BY Livros;
+
+SELECT 
+	l.nome_livro AS Livros,
+	l.preco_livro AS Preço,
+	ass.nome_assunto AS Assunto,
+	e.nome_editora AS Editora
+FROM livro AS l
+INNER JOIN assunto AS ass
+	ON ass.id_assunto = l.id_assunto
+INNER JOIN editora AS e
+	ON e.id_editora = l.id_editora
+ORDER BY Livros;
+
+SELECT
+	l.nome_livro AS Livros,
+	l.data_pub AS 'Data de publicação',
+	a.nome_autor AS 'Nome do autor',
+	a.sobrenome_autor AS Sobrenome
+FROM livro AS l
+INNER JOIN livro_autor AS la
+	ON l.id_livro = la.id_livro
+INNER JOIN autor AS a
+	ON a.id_autor = la.id_autor
+WHERE a.sobrenome_autor LIKE 'b%'
+ORDER BY Livros;
+
+SELECT 
+	l.nome_livro AS Livros,
+	a.sobrenome_autor AS Sobrenome,
+	ass.nome_assunto AS Assunto
+FROM livro AS l
+INNER JOIN livro_autor AS la
+	ON l.id_livro = la.id_livro
+INNER JOIN autor AS a
+	ON a.id_autor = la.id_autor
+INNER JOIN assunto AS ass
+	ON ass.id_assunto = l.id_assunto
+WHERE l.preco_livro > 80.00
+ORDER BY Livros;
+
+SELECT 
+	l.nome_livro AS Livros,
+	l.preco_livro AS Preços,
+	ass.nome_assunto AS Assuntos
+FROM livro AS l
+INNER JOIN assunto AS ass
+	ON ass.id_assunto = l.id_assunto
+WHERE l.preco_livro BETWEEN 70 AND 170
+ORDER BY Preços DESC;
+
+
