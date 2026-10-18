@@ -381,3 +381,19 @@ WHERE l.preco_livro BETWEEN 70 AND 170
 ORDER BY Preços DESC;
 
 
+-- OUTER JOIN
+
+SELECT *
+FROM editora AS e
+LEFT JOIN livro AS l
+	ON e.id_editora = l.id_editora;
+
+SELECT *
+FROM editora AS e
+RIGHT JOIN livro AS l
+	ON e.id_editora = l.id_editora;
+
+SELECT *
+FROM livro AS l
+FULL OUTER JOIN editora AS e
+ ON l.id_editora = e.id_editora;
