@@ -397,3 +397,16 @@ SELECT *
 FROM livro AS l
 FULL OUTER JOIN editora AS e
  ON l.id_editora = e.id_editora;
+
+
+ -- Consultando views
+
+ SELECT Livro,Assunto
+ FROM vw_livro_assunto;
+
+ SELECT	'Nome do livro', Preço, Assunto
+ FROM vw_livros_mais_caros;
+
+ SELECT * 
+ FROM vw_livros_detalhados
+ WHERE nome_livro LIKE 'a%';
