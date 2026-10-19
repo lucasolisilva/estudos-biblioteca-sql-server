@@ -410,3 +410,29 @@ FULL OUTER JOIN editora AS e
  SELECT * 
  FROM vw_livros_detalhados
  WHERE nome_livro LIKE 'a%';
+
+ -- Criando subconsultas
+
+ SELECT nome_livro, preco_livro
+ FROM livro
+ WHERE preco_livro > (
+	SELECT AVG(preco_livro)
+	FROM livro
+ )
+ ORDER BY preco_livro DESC;
+
+SELECT id_assunto, nome_livro
+FROM livro
+WHERE id_assunto IN (
+	SELECT id_assunto
+	FROM assunto
+	WHERE nome_assunto IN ('Ficção Científica','Romance')
+);
+
+SELECT a.nome_assunto, a.id_assunto
+FROM assunto AS a
+WHERE EXISTS (
+	SELECT 1
+	FROM livro AS l
+	WHERE l.id_assunto = a.id_assunto
+);
