@@ -8,22 +8,7 @@ BEGIN
 	ORDER BY preco_livro;
 END;
 
-CREATE PROCEDURE usp_PrecoLivroPorEditora
-	(@id_editora INT)
-AS
-BEGIN
-	SELECT 
-		l.nome_livro, 
-		l.preco_livro, 
-		e.nome_editora
-	FROM livro AS l
-	INNER JOIN editora AS e
-		ON e.id_editora = l.id_editora
-	WHERE l.id_editora = @id_editora
-	ORDER BY preco_livro DESC;
-END;
-
-ALTER PROCEDURE usp_PrecoLivroPorEditora
+CREATE OR ALTER PROCEDURE usp_PrecoLivroPorEditora
 	(@id_editora SMALLINT)
 AS
 BEGIN
@@ -50,12 +35,20 @@ BEGIN
 	WHERE id_livro = @id_livro;
 END;
 
-CREATE PROCEDURE usp_CadastroEditoras
+CREATE OR ALTER PROCEDURE usp_CadastroEditoras
 	(@nome VARCHAR(50))
 AS
 BEGIN
 	INSERT INTO editora(nome_editora)
 	VALUES (@nome);
+END;
+
+CREATE OR ALTER PROCEDURE usp_ConsultaAutor
+AS
+BEGIN
+	SELECT nome_autor, sobrenome_autor
+	FROM autor
+	ORDER BY nome_autor;
 END;
 
 
