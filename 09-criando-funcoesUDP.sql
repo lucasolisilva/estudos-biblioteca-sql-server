@@ -50,3 +50,16 @@ BEGIN
 	RETURN;
 END;
 
+
+-- Executando as funções escalares
+
+SELECT dbo.fn_MediaAmostra(101, 107);
+
+
+-- Executando funções tabulares
+
+SELECT * 
+FROM dbo.fn_LivrosPorEditora(4);
+
+SELECT *
+FROM dbo.fn_LivrosCaros(40.00);
